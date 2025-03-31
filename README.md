@@ -18,13 +18,13 @@ To encode a N dimensional morton code, you simply pass integers encoding coordin
 
 ```swift
 let morton = try MortonCode<UInt32>(12061, 31418)
-print(morton.value)	// 786271193
+print(morton.value)  // 786271193
 ```
 
 The coordinates can be decoded from the morton code:
 ```swift
 let coordinates = morton.coordinates(count: 2)
-print(coordinates)	// [12061, 31418]
+print(coordinates)  // [12061, 31418]
 ```
 
 The numeric values used to initialize the morton code must be able to be represented in fewer bits than the morton code size, for example a `UInt32` morton code can encode two `UInt16` values, or four `UInt8` values. A `UInt32` morton code can encode four `UInt16` values, but the numeric value of the `UInt16` must each be able to be stored in 8-bits.
@@ -34,7 +34,7 @@ The value stored in the morton code is based on the value, not necessarily the d
 
 ```swift
 let morton = try MortonCode<UInt64>(1, 0, 1, 1, 2, 2, 3, 3, 0, 0, 3, 3, 0, 1, 1, 0, 2, 3, 3, 0, 3, 2, 0, 2, 3, 1, 2, 1, 2, 2, 3, 3)
-print(morton.value)	// 17705634688369323213
+print(morton.value)  // 17705634688369323213
 ```
 
 ### Encoding Floating Point Values
@@ -45,7 +45,7 @@ let coordinates = SIMD3<Float>(-2.0, 1.2, 4.7)
 let bounds = BoundingBox(min: SIMD3<Float>(-5.0, -5.0, -5.0), max: SIMD3<Float>(5.0, 5.0, 5.0))
 	
 let mortonCode = try MortonCode<UInt64>(coordinates: coordinates, in: bounds)
-print(mortonCode.value)	//7725758287100141315
+print(mortonCode.value)  //7725758287100141315
 ```
 
 Note that when converting the morton code back into coordinates, the integer values will be returned, not the original floating point values.
