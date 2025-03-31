@@ -28,8 +28,8 @@ public struct MortonCode<T: UnsignedInteger & FixedWidthInteger> {
 /// components, the number of components must be specified.
 ///
 /// - Parameters:
-///   - count: The number of coordinate components to decode the Morton Code
-///   into.
+///   - numberOfDimensions: The number of coordinate components to decode
+///   the Morton Code into.
 ///
 /// - Returns: An array containing the coordinates that the Morton Code
 /// rerpesents.
