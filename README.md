@@ -7,7 +7,7 @@
     </a>
 </p>
 
-Welcome to **MortonCode**, a Swift package for computing a Morton Code in N dimensions.
+Welcome to **MortonCode**, a Swift package for computing a [Morton Code](https://en.wikipedia.org/wiki/Z-order_curve) in N dimensions.
 
 A Morton code (also known as Z-order or Lebesgue curve), is a mapping from many dimensions into one. It ensures locality of information, where two morton codes with a similar value represent a close spatial proximity. It can be very useful for building spatial acceleration structures such as a BVH or an Octree.
 
