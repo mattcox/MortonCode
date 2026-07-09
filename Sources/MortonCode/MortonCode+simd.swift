@@ -21,6 +21,7 @@ extension MortonCode {
 ///   - minimum: The minimum bounds for the coordinates.
 ///   - maximum: The maximum bounds for the coordinates.
 ///
+	@inlinable
 	public init<S: SIMD>(coordinates: S, minimum: S = .zero, maximum: S) throws where S.Scalar: Comparable & BinaryFloatingPoint {
 		self = try MortonCode((0..<S.scalarCount).map {
 			(coordinate: coordinates[$0], range: min(minimum[$0], maximum[$0])...max(minimum[$0], maximum[$0]))

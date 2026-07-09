@@ -18,6 +18,7 @@ extension MortonCode {
 ///   - bounds: A bounding box containing the coordinates.
 ///
 	@available(iOS 13.0, macCatalyst 13.0, macOS 10.15, *)
+	@inlinable
 	public init(coordinates: SIMD3<Float>, in bounds: BoundingBox) throws {
 		self = try MortonCode((0..<3).map {
 			(coordinate: coordinates[$0], range: bounds.min[$0]...bounds.max[$0])

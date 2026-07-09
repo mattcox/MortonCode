@@ -22,6 +22,7 @@ extension MortonCode {
 ///   - maximum: The maximum bounds for the coordinates.
 ///
 	@available(iOS 16.0, macCatalyst 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
+	@inlinable
 	public init(coordinates: Vector3D, minimum: Vector3D, maximum: Vector3D) throws {
 		let x = (coordinate: coordinates.x, range: min(minimum.x, maximum.x)...max(minimum.x, maximum.x))
 		let y = (coordinate: coordinates.y, range: min(minimum.y, maximum.y)...max(minimum.y, maximum.y))
@@ -42,6 +43,7 @@ extension MortonCode {
 ///   - maximum: The maximum bounds for the coordinates.
 ///
 	@available(iOS 16.0, macCatalyst 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
+	@inlinable
 	public init(coordinates: Point3D, minimum: Vector3D, maximum: Vector3D) throws {
 		let x = (coordinate: coordinates.x, range: min(minimum.x, maximum.x)...max(minimum.x, maximum.x))
 		let y = (coordinate: coordinates.y, range: min(minimum.y, maximum.y)...max(minimum.y, maximum.y))

@@ -17,6 +17,7 @@ public struct MortonCode<T: UnsignedInteger & FixedWidthInteger> {
 	
 /// Initialize the Morton Code with a single value.
 ///
+	@inlinable
 	public init(value: T) {
 		self.value = value
 	}
@@ -34,6 +35,7 @@ public struct MortonCode<T: UnsignedInteger & FixedWidthInteger> {
 /// - Returns: An array containing the coordinates that the Morton Code
 /// rerpesents.
 ///
+	@inlinable
 	public func coordinates(count numberOfDimensions: Int) -> [T] {
 		guard numberOfDimensions > 0 else {
 			return []
@@ -83,6 +85,7 @@ extension MortonCode {
 /// supports coordinate values between 0 and 4294967295, as 32 bits will be
 /// reserved per coordinate.
 ///
+	@inlinable
 	public init<C: UnsignedInteger & FixedWidthInteger>(_ coordinates: C...) throws {
 		self = try MortonCode(coordinates.map { $0 })
 	}
@@ -98,6 +101,7 @@ extension MortonCode {
 /// supports coordinate values between 0 and 4294967295, as 32 bits will be
 /// reserved per coordinate.
 ///
+	@inlinable
 	public init<C: UnsignedInteger & FixedWidthInteger>(_ coordinates: [C]) throws {
 		let numberOfDimensions = coordinates.count
 		guard numberOfDimensions > 0, numberOfDimensions <= T.bitWidth else {
@@ -161,6 +165,7 @@ extension MortonCode where T: BinaryInteger {
 ///   - coordinates: The coordinates to encode into the Morton Code, as well
 ///   as minimum and maximum values for the coordinate.
 ///
+	@inlinable
 	public init<C: BinaryFloatingPoint>(_ coordinates: (coordinate: C, range: ClosedRange<C>)...) throws {
 		self = try MortonCode(coordinates.map { $0 })
 	}
@@ -175,6 +180,7 @@ extension MortonCode where T: BinaryInteger {
 ///   - coordinates: The coordinates to encode into the Morton Code, as well
 ///   as minimum and maximum values for the coordinate.
 ///
+	@inlinable
 	public init<C: BinaryFloatingPoint>(_ coordinates: [(coordinate: C, range: ClosedRange<C>)]) throws {
 		// Determine the maximum value that can fit into the Morton Code. For
 		// example, if the Morton Code is 64 bits, and there are three values
@@ -211,12 +217,14 @@ extension MortonCode where T: BinaryInteger {
 }
 
 extension MortonCode: Comparable where T: Comparable {
+	@inlinable
 	public static func <(lhs: MortonCode, rhs: MortonCode) -> Bool {
 		lhs.value < rhs.value
 	}
 }
 
 extension MortonCode: Decodable where T: Decodable {
+	@inlinable
 	public init(from decoder: Decoder) throws {
 		let container = try decoder.singleValueContainer()
 		self.value = try container.decode(T.self)
@@ -224,6 +232,7 @@ extension MortonCode: Decodable where T: Decodable {
 }
 
 extension MortonCode: Encodable where T: Encodable {
+	@inlinable
 	public func encode(to encoder: Encoder) throws {
 		var container = encoder.singleValueContainer()
 		try container.encode(self.value)
@@ -235,6 +244,7 @@ extension MortonCode: Equatable {
 }
 
 extension MortonCode: Hashable where T: Hashable {
+	@inlinable
 	public func hash(into hasher: inout Hasher) {
 		hasher.combine(self.value)
 	}
